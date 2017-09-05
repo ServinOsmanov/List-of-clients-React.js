@@ -27,12 +27,7 @@ class ClientsStore extends EventEmitter {
 				  	if (xhr.status !== 200) {
 				    	alert(xhr.status + ': ' + xhr.statusText);
 				  	} else {
-				  		if(!!xhr.responseText) {
-				  			response = 'The Content Was Not Loaded';
-				  		}else {
-				  			response = JSON.parse(xhr.responseText);
-				  		}
-				    	
+				  		response = JSON.parse(xhr.responseText);
 				  	}
 				}
    				xhr.send();
@@ -40,9 +35,6 @@ class ClientsStore extends EventEmitter {
 				this.emit('change');
 			}
 			case 'LOAD_OR_NOT': {
-				if(typeof this.clients === 'string') {
-					return;
-				} else {
 				if(action.argum === 'Next') {
 					this.currentNumber += 1;
 				}
@@ -78,7 +70,6 @@ class ClientsStore extends EventEmitter {
 					xhr.send();
 					this.clients = [...this.clients, ...response];
 					this.emit('change');
-				}
 				}
 			}
 		}

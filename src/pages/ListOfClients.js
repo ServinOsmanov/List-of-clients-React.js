@@ -32,9 +32,7 @@ class ListOfClients extends Component {
 	}
 
 	render() {
-		let listOfClients;
-		if(typeof this.state.clients === 'object') {
-		listOfClients = this.state.clients.map((client, index) => {
+		let listOfClients = this.state.clients.map((client, index) => {
 			return ({
 				Name: <Link to={`/${client.name}`}>{client.name}</Link>,
 				Phone: client.phone || '-',
@@ -44,10 +42,6 @@ class ListOfClients extends Component {
 				Adress: client.adress || '-'
 			})
 		});
-	} else {
-		listOfClients = [{Error: this.state.clients}];
-	}
-		
 		return(
 			<div>
 				<p className='registrationForm'>
