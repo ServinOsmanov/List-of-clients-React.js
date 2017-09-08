@@ -33,6 +33,7 @@ class ClientsStore extends EventEmitter {
    				xhr.send();
 				this.clients = response;
 				this.emit('change');
+				break;
 			}
 			case 'LOAD_OR_NOT': {
 				if(action.argum === 'Next') {
@@ -70,7 +71,11 @@ class ClientsStore extends EventEmitter {
 					xhr.send();
 					this.clients = [...this.clients, ...response];
 					this.emit('change');
+					break;
 				}
+			}
+			default: {
+				return;
 			}
 		}
 	}
